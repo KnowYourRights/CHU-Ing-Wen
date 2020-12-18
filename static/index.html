@@ -76,7 +76,7 @@
     }
 
     function anthologyClick(random) {
-      articleHeader.innerText = '載入中＾＾';
+      articleHeader.innerText = 'ㄜ……';
 
       let name = random ? "random" : anthologySelect.value;
 
@@ -96,10 +96,14 @@
     }
 
     function convertClick() {
-      articleHeader.innerText = '載入中＾＾';
+      articleHeader.innerText = 'ㄜ……';
       let content = articleInput.value;
       if (content.length > 4269) {
         articleContent.innerText = 'ㄎㄎ，ㄋㄉ文章太長ㄌ啦＞／／／＜';
+        return;
+      } else if (content.trim().length == 0) {
+        articleHeader.innerText = 'ㄏㄏ，ㄋ叫婐翻ｙｅｅ空白文＝　＝';
+        articleContent.innerText = '';
         return;
       }
 
