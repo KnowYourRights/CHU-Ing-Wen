@@ -2,12 +2,12 @@ package converter
 
 import (
 	"bufio"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 const (
@@ -20,8 +20,11 @@ const (
 var termMap map[string]string
 var charMap map[string]string
 var anthologyFilenames []string
+var anthologyList string
 
 func init() {
+	rand.Seed(time.Now().Unix())
+
 	termMap, charMap = make(map[string]string), make(map[string]string)
 
 	// Terms.
@@ -61,6 +64,8 @@ func init() {
 	for _, f := range files {
 		anthologyFilenames = append(anthologyFilenames, f.Name())
 	}
+
+	anthologyList = strings.Join(anthologyFilenames, ",")
 }
 
 // Convert converts a good ole article into CHU, Ing-Wen.
@@ -74,17 +79,25 @@ func Convert(goodOleArticle string) string {
 	}
 
 	str := builder.String()
-	fmt.Println(str)
 	return str
 }
 
-// GetRandomFromAnthology returns a converted random article from the anthology directory.
-func GetRandomFromAnthology() string {
-	// Open a random file.
-	file, err := os.Open(anthologyDirPath + anthologyFilenames[rand.Intn(len(anthologyFilenames))])
+// GetAnthologyList returns a list of article names from the anthology.
+func GetAnthologyList() string {
+	return anthologyList
+}
+
+// GetFromAnthology returns a converted article from the anthology directory. If no such file exists, return a random one.
+func GetFromAnthology(filename string) string {
+	// Try opening the specified file.
+	file, err := os.Open(anthologyDirPath + filename)
 	if err != nil {
-		log.Println(err)
-		return errString
+		// Failed, open a random file.
+		file, err = os.Open(anthologyDirPath + anthologyFilenames[rand.Intn(len(anthologyFilenames))])
+		if err != nil {
+			log.Println(err)
+			return errString
+		}
 	}
 	defer file.Close()
 

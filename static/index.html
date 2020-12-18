@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh_TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta property="og:title" content="Know Your Rights!" />
+    <meta name="twitter:title" content="Know Your Rights!" />
+    <meta name="author" content="Know Your Rights!"/>
+    <meta property="og:site_name" content="Know Your Rights" />
+    <meta property="og:url" content="https://chu-ing-wen.herokuapp.com/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@URBloodyRight" />
+    <meta name="twitter:creator" content="@URBloodyRight" />
+    <meta property="og:type" content="website" />
+    <title>✩注音文ㄉ產生器＆課文嚴選０.０✩</title>
+  </head>
+  <body style="background-color: rgb(241, 168, 235);">
+    <div style="width: 60%; margin: auto;">
+      <img src="title.png" alt="注音文ㄉ森產ㄑ" style="width: 100%;"/>
+    </div>
+    <main>
+      <div style="font-size: larger; background-color: yellow; text-align: center; padding-top: 20px; padding-bottom: 20px;">
+        <label for="anthology">選擇ㄋ要看ㄉＵ質文章：</label>
+        <select id="anthology" name="anthology" >
+        </select>
+        <input type="button" id="anthologyBtn" onclick="anthologyClick(false)" value="選好ㄌ！！" />
+        <input type="button" id="anthologyBtn" onclick="anthologyClick(true)" value="豪手ㄑ！" />
+      </div>
+
+      <div style="font-size: larger; background-color: lightskyblue; text-align: center; padding-top: 20px; padding-bottom: 5px;">
+        <div>
+          <label for="article">或４輸入ㄋ要翻Ｙｅｅㄉ內容（最多４千多ㄍ字元）：</label>
+          <textarea id="article" maxlength="4269" style="width: 90%; margin: auto;"></textarea>
+        </div>
+        <input type="button" id="convertBtn" onclick="convertClick()" value="ｏｋ！翻ｙｅｅ～" />
+      </div>
+      <hr />
+      <div style="text-align: center; font-size: large; background-color:rosybrown; padding: 20px 20px 20px 20px;">
+        <div style="color: green; font-size: x-large;"><strong id="article-header">載入中＾＾</strong></div>
+        <p id="article-content" style="color: darkslateblue; text-align: left;">文章載入中～～～</p>
+      </div>
+    </main>
+
+    <div style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: small;">
+      <span style="background-color:aqua; color: darkgoldenrod"><strong>友讚連ｊａｙ：</strong></span>
+      <a href="https://knowyourrights.github.io" target="_blank" style="background-color: yellow; color: blue"><strong>ｋｎｏｗ　ｙｏｕｒ　ｒｉｇｈｔｓ</strong></a>
+      <a href="https://github.com/KnowYourRights/CHU-Ing-Wen" target="_blank" style="background-color: deeppink; color: white"><strong>原屎ｍａ</strong></a>
+      <a href="https://twitter.com/URBloodyRight" target="_blank" style="background-color: red; color: yellow"><strong>推特～～</strong></a>
+    </div>
+  </body>
+
+  <script>
+    const API = "http://localhost:8080";
+    const MAX_LEN = 4269;
+
+    let articleInput = document.getElementById("article");
+    let articleContent = document.getElementById("article-content");
+    let anthologySelect = document.getElementById("anthology");
+    let articleHeader = document.getElementById("article-header");
+
+    function getAnthologyList() {
+      fetch(API + '/list', {
+        method: 'GET'
+      }).then(resp => {
+        resp.text().then(
+          txt => {
+            let list = txt.split(",");
+            for (let i = 0; i < list.length; i++) {
+              let opt = new Option(list[i], list[i]);
+              anthologySelect.add(opt, undefined);
+            }
+            loading = false;
+          }
+        )
+      });
+    }
+
+    function anthologyClick(random) {
+      articleHeader.innerText = '載入中＾＾';
+
+      let name = random ? "random" : anthologySelect.value;
+
+
+      return fetch(API + '/view', {
+        body: name,
+        headers: {
+          'content-type': 'text/plain'
+        },
+        method: 'POST'
+      }).then(resp => {
+        resp.text().then(txt => {
+          articleContent.innerText = txt;
+          articleHeader.innerText = random ? articleHeader.innerText = '隨機Ｕ文＾＾' : 'ｊａｙ篇敲Ｕㄉ：）';
+        });
+      });
+    }
+
+    function convertClick() {
+      articleHeader.innerText = '載入中＾＾';
+      let content = articleInput.value;
+      if (content.length > 4269) {
+        articleContent.innerText = 'ㄎㄎ，ㄋㄉ文章太長ㄌ啦＞／／／＜';
+        return;
+      }
+
+      fetch(API + '/convert', {
+        body: content,
+        headers: {
+          'content-type': 'text/plain'
+        },
+        method: 'POST'
+      }).then(resp => {
+        resp.text().then(txt => {
+          articleContent.innerText = txt;
+          articleHeader.innerText = 'ㄋㄉ文章真Ｄ毫看～～讚讚！';
+        });
+      });
+    }
+
+    getAnthologyList();
+    anthologyClick(true);
+  </script>
+</html>
