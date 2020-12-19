@@ -8,8 +8,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /bin/server .
 
 # Final stage.
 FROM alpine:3.12.0
-ENV PORT 80
+ENV PORT 42069
 WORKDIR /app
-
+EXPOSE 42069
 COPY --from=builder /bin/ .
 CMD ["./server"]
