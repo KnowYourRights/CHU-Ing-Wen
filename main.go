@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fs := http.FileServer(http.Dir("./static"))
+	fs := custom404(http.Dir("./static"))
 
 	mux := http.NewServeMux()
 	mux.Handle("/", fs)
@@ -19,6 +19,9 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
+
+	handler := recoverPanic(logRequest(rateLimiter(logRequest(mux))))
+
 	log.Println("Serving on port", port)
-	log.Fatal(http.ListenAndServe(":"+port, logRequest(rateLimiter(mux))))
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }

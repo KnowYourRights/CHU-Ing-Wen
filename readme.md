@@ -1,12 +1,21 @@
 # Ｊａｙ４１ㄍ產森注音文ㄉ網站
+
+網讚連結：[https://chu-ing-wen.herokuapp.com/](https://chu-ing-wen.herokuapp.com/)
+
 泥可以自行輸入想轉換ㄉ注音文，或４欣賞古人ㄉ智慧＾＾！讚讚！
 
 Hi! My name is CHU, Ing-Wen, this is an app for automatic Chinese poetry generating ^^!
 
-## ｄｅｍｏ
+## 屎用示範
+
+影片＾＾：[https://youtu.be/_hvj-FsxOZI](https://youtu.be/_hvj-FsxOZI)
+
+<img src="demo1.png" alt="demo1" height=400>
+
+<img src="demo2.png" alt="demo2" height=400>
 
 ## ａｐｉ
-婐ㄅ開放ｃｏｒｓㄛ！抱歉ㄏㄏ＾＾！而且人家不管ｈｔｔｐ　ｍｅｔｈｏｄ的！
+婐有開放ｃｏｒｓㄛ！ㄏㄏ＾＾！而且倫家不管ｈｔｔｐ　ｍｅｔｈｏｄ的！
 
 NO CORS, lul!
 
@@ -21,7 +30,7 @@ I will fart inside a plaintext, but the "l" and "text" are silent.
 No body is an island. Plaintext is good enough, Jason!
 
 #### `POST /convert`
-把想轉換ㄉ文章再ｂｏｄｙ裡就可以ㄌ！ｐｌａｉｎｔｅｘｔ就豪，甭ｊｓｏｎ！字數限制４「４２６９」ㄍ字元！
+把想轉換ㄉ文章再ｂｏｄｙ裡就可以ㄌ！ｐｌａｉｎｔｅｘｔ就豪，甭ｊｓｏｎ！字數限制４「４２６９」ㄍ字元！
 
 Convert my body, demon! Plaintext good, no, Jason! Are you 8787 long!
 
