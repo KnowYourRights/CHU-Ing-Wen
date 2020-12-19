@@ -1,6 +1,6 @@
 # Ｊａｙ４１ㄍ產森注音文ㄉ網站
 
-網讚連結：[https://chu-ing-wen.herokuapp.com/](https://chu-ing-wen.herokuapp.com/)
+網讚連結：[https://bopomo.pw](https://bopomo.pw)
 
 泥可以自行輸入想轉換ㄉ注音文，或４欣賞古人ㄉ智慧＾＾！讚讚！
 
@@ -8,7 +8,7 @@ Hi! My name is CHU, Ing-Wen, this is an app for automatic Chinese poetry generat
 
 ## 屎用示範
 
-影片＾＾：[https://youtu.be/_hvj-FsxOZI](https://youtu.be/_hvj-FsxOZI)
+影片＾＾：[https://youtu.be/le1B_w82Z2M](https://youtu.be/le1B_w82Z2M)
 
 <img src="demo1.png" alt="demo1" height=400>
 
