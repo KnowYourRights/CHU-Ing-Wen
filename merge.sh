@@ -1,0 +1,1 @@
+git -c "user.name = Know Your Rights" -c "user.email = casd.right@gmail.com" merge master
