@@ -8,7 +8,7 @@ Hi! My name is CHU, Ing-Wen, this is an app for automatic Chinese poetry generat
 
 ## 屎用示範
 
-影片＾＾：[https://youtu.be/le1B_w82Z2M](https://youtu.be/le1B_w82Z2M)
+影片＾＾：[https://youtu.be/dSIZdO03aBE](https://youtu.be/dSIZdO03aBE)
 
 <img src="demo1.png" alt="demo1" height=400>
 
