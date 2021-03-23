@@ -1,6 +1,6 @@
 # Ｊａｙ４１ㄍ產森注音文ㄉ網站
 
-網讚連結：[https://bopomo.pw](https://bopomo.pw)
+網讚連結：[https://knowyourrights.page/bopomo](https://knowyourrights.page/bopomo)
 
 泥可以自行輸入想轉換ㄉ注音文，或４欣賞古人ㄉ智慧＾＾！讚讚！
 
