@@ -72,7 +72,7 @@ func custom404(fs http.FileSystem) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		_, err := fs.Open(path.Clean(r.URL.Path))
 		if os.IsNotExist(err) {
-			w.Header().Add("Location", "https://knowyourrights.github.io/")
+			w.Header().Add("Location", "https://knowyourrights.page/")
 			w.WriteHeader(http.StatusSeeOther)
 			return
 		}
